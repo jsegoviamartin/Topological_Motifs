@@ -41,8 +41,8 @@ The repository is organised into three sections, corresponding to Sections 3.1�
 ---
 
 ## ▶️ Usage
-Each section contains runnable Python scripts. Example usage:
+All sections provide runnable Python scripts that you can execute from an interactive interpreter (e.g., python or ipython). Parameters such as network size, number of repetitions, time steps, and the set of temptation values T are plain variables at the top of each script—edit them to match your experiment, then run.
 
-```bash
-cd "Cooperation profiles"
-python run_lattice.py
+The simulations are embarrassingly parallel across T values and repetitions. The scripts already use Python’s multiprocessing.Pool and will use up to min(40, cpu_count()) cores by default.
+
+On HPC clusters (e.g., SLURM), you can either (i) let each job run one chunk of T-values/repetitions by editing T_values/num_repetitions, or (ii) submit an array job where each task runs a single T.
