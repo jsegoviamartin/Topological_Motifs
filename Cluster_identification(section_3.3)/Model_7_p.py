@@ -13,11 +13,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 # Parameters
 num_nodes = 10000  # Network size
-num_repetitions = 1  # Number of simulations per T value
+num_repetitions = 100  # Number of simulations per T value
 time_steps = 100  # Number of steps per simulation
 k_mean = 8  # Mean degree
-#T_values = np.linspace(1.0, 2.0, 101)  # Range of T values for additional analysis
-T_values = np.linspace(1.8, 1.8, 1)  # Range of T values for additional analysis
+T_values = np.linspace(1.0, 2.0, 101)  # Range of T values for additional analysis
+#T_values = np.linspace(1.8, 1.8, 1)  # Range of T values for additional analysis
 #T_values = np.linspace(1.0, 2.0, num=11)  # 11 points from 1.0 to 2.0 inclusive
 #T_values = np.sort(np.concatenate((np.linspace(1.0, 2.0, num=11), [1.66, 1.67, 1.68])))
 
@@ -47,7 +47,7 @@ def create_barabasi_albert():
 
 # Select networks
 network_types = {
-    #"2D Lattice": create_2d_lattice,
+    "2D Lattice": create_2d_lattice,
     "Random Regular (RR)": create_random_regular,
     #"Erdős–Rényi (ER)": create_erdos_renyi,
     #"Barabási–Albert (BA)": create_barabasi_albert
@@ -422,7 +422,7 @@ if __name__ == "__main__":
 
     # Combine all results into a single CSV
     combined_df = pd.concat(all_results)
-    combined_df.to_csv("strategy_dynamics_RR_T1.8_TEST.csv", index=False)  # Save only ONE CSV
+    combined_df.to_csv("strategy_dynamics.csv", index=False)  # Save only ONE CSV
 
     # PLOT 2
     # Strategy dynamics plot
@@ -455,5 +455,6 @@ if __name__ == "__main__":
     plt.title("Cooperation and Strategy Dynamics Across Networks")
     plt.legend(title="Metrics")
     plt.grid()
-    plt.savefig("strategy_dynamics_RR_T1.8_TEST.png")
+    plt.savefig("strategy_dynamics.png")
     plt.show()
+
